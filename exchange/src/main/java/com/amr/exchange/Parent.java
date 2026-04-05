@@ -112,7 +112,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
         public String getResource() {
             return switch (this) {
                 case DASHBOARD    -> "dashboard/dashboard.fxml";
-                case GRAPH        -> "login/login.fxml";   // placeholder
+                case GRAPH        -> "graph/graph.fxml";
                 case TRANSACTIONS -> "login/login.fxml";   // placeholder
                 case EXPORT       -> "login/login.fxml";   // placeholder
                 case LOGIN        -> "login/login.fxml";

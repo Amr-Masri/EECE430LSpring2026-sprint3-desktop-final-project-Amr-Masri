@@ -1,9 +1,6 @@
 package com.amr.exchange.api;
 
-import com.amr.exchange.api.model.Analytics;
-import com.amr.exchange.api.model.ExchangeRates;
-import com.amr.exchange.api.model.Token;
-import com.amr.exchange.api.model.User;
+import com.amr.exchange.api.model.*;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -25,5 +22,13 @@ public interface Exchange {
         @Query("usd_to_lbp") boolean usdToLbp,
         @Query("start_date") String startDate,
         @Query("end_date") String endDate
+    );
+
+    @GET("/exchangeRateHistory")
+    Call<RateHistory> getExchangeRateHistory(
+            @Query("usd_to_lbp") boolean usdToLbp,
+            @Query("interval") String interval,
+            @Query("start_date") String startDate,
+            @Query("end_date") String endDate
     );
 }
