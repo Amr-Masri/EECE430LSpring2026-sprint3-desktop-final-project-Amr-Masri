@@ -8,10 +8,11 @@ module com.amr.exchange {
     requires java.prefs;
 
     opens com.amr.exchange to javafx.fxml;
-    opens com.amr.exchange.api.model to gson;
+    opens com.amr.exchange.api.model to javafx.base, gson;
     opens com.amr.exchange.login to javafx.fxml;
     opens com.amr.exchange.register to javafx.fxml;
     opens com.amr.exchange.dashboard to javafx.fxml;
     opens com.amr.exchange.graph to javafx.fxml;
+    opens com.amr.exchange.transactions to javafx.fxml;
     exports com.amr.exchange;
 }

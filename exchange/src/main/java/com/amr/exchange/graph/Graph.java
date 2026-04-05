@@ -35,13 +35,13 @@ public class Graph implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // defaults: last 7 days, daily, usd→lbp
+        //defaults: last 7 days, daily, usd to lbp
         endDatePicker.setValue(LocalDate.now());
         startDatePicker.setValue(LocalDate.now().minusDays(7));
         usdToLbpRadio.setSelected(true);
         dailyRadio.setSelected(true);
 
-        // chart look
+        //chart look
         rateChart.setAnimated(false);
         rateChart.setCreateSymbols(true);
 
@@ -119,7 +119,7 @@ public class Graph implements Initializable {
         int count = 0;
 
         for (RateHistoryPoint point : history.data) {
-            // shorten the timestamp label for readability
+            //shorten the timestamp label for readability
             String label = shortenTimestamp(point.timestamp, interval);
             series.getData().add(
                     new XYChart.Data<>(label, point.averageRate)
@@ -133,7 +133,7 @@ public class Graph implements Initializable {
 
         rateChart.getData().add(series);
 
-        // summary below the chart
+        //summary below the chart
         double avg = sumRate / count;
         summaryLabel.setText(String.format(
                 "Points: %d  |  Min: %.2f  |  Max: %.2f  |  Avg: %.2f",
@@ -142,11 +142,11 @@ public class Graph implements Initializable {
     }
 
     private String shortenTimestamp(String timestamp, String interval) {
-        // timestamp from backend looks like "2026-02-22T00:00:00"
-        // for daily: show "02-22", for hourly: show "02-22 14:00"
+        //the timestamp from backend looks like "2026-02-22T00:00:00"
+        //for daily, we show "02-22", for hourly we show "02-22 14:00"
         try {
             if (interval.equals("daily")) {
-                // take just MM-DD
+                //take just MM-DD
                 return timestamp.substring(5, 10);
             } else {
                 // take MM-DD HH:mm

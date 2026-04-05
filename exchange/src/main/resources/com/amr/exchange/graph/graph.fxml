@@ -28,7 +28,7 @@
         <DatePicker fx:id="endDatePicker"/>
     </HBox>
 
-    <!-- controls row 2: direction + interval + apply -->
+    <!-- controls row 2: direction and  interval and apply -->
     <HBox spacing="15" alignment="CENTER_LEFT">
         <Label text="Direction:"/>
         <RadioButton fx:id="usdToLbpRadio" text="USD → LBP"
@@ -44,7 +44,7 @@
         <Button text="Apply" onAction="#onApply" styleClass="primary-btn"/>
     </HBox>
 
-    <!-- the line chart -->
+    <!-- the actual line chart -->
     <LineChart fx:id="rateChart" VBox.vgrow="ALWAYS"
                title="Exchange Rate Over Time">
         <xAxis>
@@ -55,10 +55,10 @@
         </yAxis>
     </LineChart>
 
-    <!-- summary row -->
+    <!--summary row -->
     <Label fx:id="summaryLabel" text="" styleClass="summary-label"/>
 
-    <!-- status -->
+    <!--status -->
     <Label fx:id="statusLabel" text="" styleClass="status-label"/>
 
 </VBox>

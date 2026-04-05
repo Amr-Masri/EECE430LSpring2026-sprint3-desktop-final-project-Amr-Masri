@@ -113,7 +113,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
             return switch (this) {
                 case DASHBOARD    -> "dashboard/dashboard.fxml";
                 case GRAPH        -> "graph/graph.fxml";
-                case TRANSACTIONS -> "login/login.fxml";   // placeholder
+                case TRANSACTIONS -> "transactions/transactions.fxml";
                 case EXPORT       -> "login/login.fxml";   // placeholder
                 case LOGIN        -> "login/login.fxml";
                 case REGISTER     -> "register/register.fxml";
