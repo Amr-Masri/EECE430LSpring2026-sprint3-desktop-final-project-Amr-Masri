@@ -73,4 +73,26 @@ public interface Exchange {
     Call<List<Offer>> getMyTrades(
             @Header("Authorization") String authorization
     );
+
+    @POST("/alerts")
+    Call<Alert> createAlert(
+            @Body Alert alert,
+            @Header("Authorization") String authorization
+    );
+
+    @GET("/alerts")
+    Call<List<Alert>> getAlerts(
+            @Header("Authorization") String authorization
+    );
+
+    @DELETE("/alerts/{id}")
+    Call<ResponseBody> deleteAlert(
+            @Path("id") int alertId,
+            @Header("Authorization") String authorization
+    );
+
+    @GET("/alerts/check")
+    Call<Object> checkAlerts(
+            @Header("Authorization") String authorization
+    );
 }

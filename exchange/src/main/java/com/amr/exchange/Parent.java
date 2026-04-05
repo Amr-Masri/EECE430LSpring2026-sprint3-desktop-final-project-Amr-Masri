@@ -24,6 +24,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
     @FXML public Button transactionButton;
     @FXML public Button exportButton;
     @FXML public Button marketplaceButton;
+    @FXML public Button alertsButton;
     @FXML public Button loginButton;
     @FXML public Button registerButton;
     @FXML public Button logoutButton;
@@ -69,6 +70,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
     @FXML public void transactionsSelected() { swapContent(Section.TRANSACTIONS); }
     @FXML public void exportSelected()       { swapContent(Section.EXPORT); }
     @FXML public void marketplaceSelected() { swapContent(Section.MARKETPLACE); }
+    @FXML public void alertsSelected() { swapContent(Section.ALERTS); }
     @FXML public void loginSelected()        { swapContent(Section.LOGIN); }
     @FXML public void registerSelected()     { swapContent(Section.REGISTER); }
 
@@ -105,13 +107,14 @@ public class Parent implements Initializable, OnPageCompleteListener {
         transactionButton.setVisible(auth);  transactionButton.setManaged(auth);
         exportButton.setVisible(auth);       exportButton.setManaged(auth);
         marketplaceButton.setVisible(auth);   marketplaceButton.setManaged(auth);
+        alertsButton.setVisible(auth);        alertsButton.setManaged(auth);
         loginButton.setVisible(!auth);       loginButton.setManaged(!auth);
         registerButton.setVisible(!auth);    registerButton.setManaged(!auth);
         logoutButton.setVisible(auth);       logoutButton.setManaged(auth);
     }
 
     private enum Section {
-        DASHBOARD, GRAPH, TRANSACTIONS, EXPORT, MARKETPLACE, LOGIN, REGISTER;
+        DASHBOARD, GRAPH, TRANSACTIONS, EXPORT, MARKETPLACE, ALERTS, LOGIN, REGISTER;
 
         public String getResource() {
             return switch (this) {
@@ -119,8 +122,9 @@ public class Parent implements Initializable, OnPageCompleteListener {
                 case GRAPH        -> "graph/graph.fxml";
                 case TRANSACTIONS -> "transactions/transactions.fxml";
                 case EXPORT       -> "export/export.fxml";
-                case LOGIN        -> "login/login.fxml";
                 case MARKETPLACE  -> "marketplace/marketplace.fxml";
+                case ALERTS       -> "alerts/alerts.fxml";
+                case LOGIN        -> "login/login.fxml";
                 case REGISTER     -> "register/register.fxml";
             };
         }
@@ -132,6 +136,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
                 case TRANSACTIONS -> "Transactions";
                 case EXPORT       -> "Export CSV";
                 case MARKETPLACE  -> "Marketplace";
+                case ALERTS       -> "Alerts";
                 case LOGIN        -> "Login";
                 case REGISTER     -> "Register";
             };
