@@ -1,0 +1,23 @@
+.nav-container {
+    -fx-background-color: #2c3e50;
+    -fx-pref-width: 150px;
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+}
+.nav-button {
+    -fx-max-width: 140px;
+    -fx-pref-width: 140px;
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 10 8 10;
+    -fx-cursor: hand;
+}
+.nav-button:hover { -fx-background-color: #1abc9c; }
+.proof-panel {
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+    -fx-padding: 8px;
+    -fx-font-size: 11px;
+}

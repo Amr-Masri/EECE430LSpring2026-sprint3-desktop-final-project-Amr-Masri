@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amr.exchange.register.Register"
+      stylesheets="@register.css"
+      alignment="CENTER"
+      spacing="12"
+      prefHeight="475.0" prefWidth="480.0">
+
+    <Label text="Create New Account" styleClass="title"/>
+    <Label text="Username"/>
+    <TextField fx:id="usernameTextField" maxWidth="280"/>
+    <Label text="Password"/>
+    <PasswordField fx:id="passwordTextField" maxWidth="280"/>
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+    <Button text="Register" onAction="#register" styleClass="primary-btn"/>
+</VBox>

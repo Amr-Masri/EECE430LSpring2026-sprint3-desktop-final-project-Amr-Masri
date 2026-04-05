@@ -1,0 +1,3 @@
+.title { -fx-font-size: 22px; -fx-font-weight: bold; }
+.error-label { -fx-text-fill: red; -fx-font-size: 13px; }
+.primary-btn { -fx-font-size: 14px; -fx-padding: 6 20 6 20; }

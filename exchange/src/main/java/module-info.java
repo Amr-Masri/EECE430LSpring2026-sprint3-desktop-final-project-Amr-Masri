@@ -1,4 +1,4 @@
-module com.yourname.exchange {
+module com.amr.exchange {
     requires javafx.controls;
     requires javafx.fxml;
     requires retrofit2;
@@ -9,5 +9,7 @@ module com.yourname.exchange {
 
     opens com.amr.exchange to javafx.fxml;
     opens com.amr.exchange.api.model to gson;
+    opens com.amr.exchange.login to javafx.fxml;
+    opens com.amr.exchange.register to javafx.fxml;
     exports com.amr.exchange;
 }
