@@ -92,7 +92,7 @@ public interface Exchange {
     );
 
     @GET("/alerts/check")
-    Call<Object> checkAlerts(
+    Call<AlertCheckResult> checkAlerts(
             @Header("Authorization") String authorization
     );
 }

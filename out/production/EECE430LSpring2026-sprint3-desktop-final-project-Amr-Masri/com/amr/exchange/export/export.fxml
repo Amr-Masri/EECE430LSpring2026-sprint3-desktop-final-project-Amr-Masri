@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amr.exchange.export.Export"
+      stylesheets="@export.css"
+      spacing="14"
+      prefHeight="450.0" prefWidth="480.0"
+      alignment="TOP_CENTER">
+
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <!--title -->
+    <Label text="Export Transactions" styleClass="page-title"/>
+
+    <!--description -->
+    <Label styleClass="description-label" wrapText="true"
+           text="Download your full transaction history as a CSV file. The file will include transaction ID, USD amount, LBP amount, direction, and date."/>
+
+    <!-- status -->
+    <Label fx:id="statusLabel" text="" styleClass="status-label" wrapText="true"/>
+
+    <!-- export button -->
+    <Button fx:id="exportButton" text="⬇  Export as CSV"
+            onAction="#onExport" styleClass="export-btn"/>
+
+    <!--preview area -->
+    <Label text="CSV Preview:" styleClass="section-title"/>
+    <TextArea fx:id="previewArea" VBox.vgrow="ALWAYS"
+              prefHeight="200" wrapText="false"
+              styleClass="preview-area"/>
+
+</VBox>

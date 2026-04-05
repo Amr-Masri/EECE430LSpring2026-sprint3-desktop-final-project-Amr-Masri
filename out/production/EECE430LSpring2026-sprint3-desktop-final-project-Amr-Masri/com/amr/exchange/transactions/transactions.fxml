@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amr.exchange.transactions.Transactions"
+      stylesheets="@transactions.css"
+      spacing="10"
+      prefHeight="450.0" prefWidth="480.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="directionGroup"/>
+    </fx:define>
+
+    <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+    <!--title -->
+    <Label text="Transactions" styleClass="page-title"/>
+
+    <!-- add transaction form -->
+    <Label text="Add New Transaction" styleClass="section-title"/>
+    <VBox styleClass="form-box" spacing="8">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="USD Amount:" minWidth="100"/>
+            <TextField fx:id="usdAmountField" promptText="e.g. 100" prefWidth="150"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="LBP Amount:" minWidth="100"/>
+            <TextField fx:id="lbpAmountField" promptText="e.g. 9000000" prefWidth="150"/>
+        </HBox>
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <Label text="Direction:" minWidth="100"/>
+            <RadioButton fx:id="usdToLbpRadio" text="USD → LBP"
+                         toggleGroup="$directionGroup" selected="true"/>
+            <RadioButton fx:id="lbpToUsdRadio" text="LBP → USD"
+                         toggleGroup="$directionGroup"/>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button fx:id="addButton" text="Add Transaction"
+                    onAction="#onAddTransaction" styleClass="primary-btn"/>
+            <Label fx:id="formStatusLabel" text="" styleClass="status-label"/>
+        </HBox>
+    </VBox>
+
+    <!--transaction history -->
+    <Label text="My Transaction History" styleClass="section-title"/>
+    <TableView fx:id="transactionTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId"        text="ID"        prefWidth="40"/>
+            <TableColumn fx:id="colUsd"       text="USD"       prefWidth="80"/>
+            <TableColumn fx:id="colLbp"       text="LBP"       prefWidth="90"/>
+            <TableColumn fx:id="colDirection" text="Direction" prefWidth="90"/>
+            <TableColumn fx:id="colDate"      text="Date"      prefWidth="140"/>
+            <TableColumn fx:id="colOutlier"   text="Outlier"   prefWidth="60"/>
+        </columns>
+        <placeholder>
+            <Label text="No transactions to display."/>
+        </placeholder>
+    </TableView>
+    <Label fx:id="tableStatusLabel" text="" styleClass="status-label"/>
+</VBox>

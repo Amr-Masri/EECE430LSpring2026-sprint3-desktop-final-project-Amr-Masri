@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amr.exchange.alerts.Alerts"
+            stylesheets="@alerts.css"
+            fitToWidth="true"
+            prefHeight="450.0" prefWidth="480.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="rateGroup"/>
+        <ToggleGroup fx:id="triggerGroup"/>
+    </fx:define>
+
+    <content>
+        <VBox spacing="12">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+            <Label text="Exchange Rate Alerts" styleClass="page-title"/>
+
+            <!--create alert form -->
+            <Label text="Create New Alert" styleClass="section-title"/>
+            <VBox styleClass="form-box" spacing="8">
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Rate:" minWidth="80"/>
+                    <RadioButton fx:id="usdToLbpRadio" text="USD → LBP"
+                                 toggleGroup="$rateGroup" selected="true"/>
+                    <RadioButton fx:id="lbpToUsdRadio" text="LBP → USD"
+                                 toggleGroup="$rateGroup"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Threshold:" minWidth="80"/>
+                    <TextField fx:id="thresholdField"
+                               promptText="e.g. 90000" prefWidth="150"/>
+                </HBox>
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Trigger:" minWidth="80"/>
+                    <RadioButton fx:id="aboveRadio" text="Above threshold"
+                                 toggleGroup="$triggerGroup" selected="true"/>
+                    <RadioButton fx:id="belowRadio" text="Below threshold"
+                                 toggleGroup="$triggerGroup"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="createButton" text="Create Alert"
+                            onAction="#onCreateAlert" styleClass="primary-btn"/>
+                    <Label fx:id="createStatusLabel" text=""
+                           styleClass="status-label"/>
+                </HBox>
+            </VBox>
+
+            <!--alerts table -->
+            <Label text="My Alerts" styleClass="section-title"/>
+            <TableView fx:id="alertsTable" prefHeight="160">
+                <columns>
+                    <TableColumn fx:id="colId"        text="ID"        prefWidth="35"/>
+                    <TableColumn fx:id="colDirection" text="Rate"      prefWidth="80"/>
+                    <TableColumn fx:id="colThreshold" text="Threshold" prefWidth="90"/>
+                    <TableColumn fx:id="colTrigger"   text="Trigger"   prefWidth="70"/>
+                    <TableColumn fx:id="colDate"      text="Created"   prefWidth="130"/>
+                </columns>
+                <placeholder><Label text="No alerts set."/></placeholder>
+            </TableView>
+            <Label fx:id="tableStatusLabel" text="" styleClass="status-label"/>
+
+            <!--check alerts -->
+            <Label text="Check Triggered Alerts" styleClass="section-title"/>
+            <Button fx:id="checkButton" text="Check Now Against Current Rate"
+                    onAction="#onCheckAlerts" styleClass="primary-btn"/>
+            <TextArea fx:id="checkResultArea" prefHeight="100"
+                      editable="false" wrapText="true"
+                      promptText="Check results will appear here..."/>
+
+        </VBox>
+    </content>
+</ScrollPane>

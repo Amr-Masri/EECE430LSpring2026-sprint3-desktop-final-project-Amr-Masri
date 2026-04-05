@@ -131,20 +131,53 @@ Confirm the backend is running at `http://127.0.0.1:5000`.
 
 ## Running the Application
 
-### Option A — Run from IntelliJ IDEA (Recommended)
+### Option A — Run via Maven Wrapper (Most Reliable — Recommended)
 
-1. In the Project panel, locate `src/main/java/com/amr/exchange/Main.java`
-2. Right-click `Main.java` → **Run 'Main.main()'**
-3. The desktop window will open
+This method works on any machine without needing Maven or IntelliJ configured. Open a terminal/PowerShell inside the `exchange/` folder and run:
 
-### Option B — Run via Maven
+```powershell
+# Windows (PowerShell or Command Prompt)
+.\mvnw.cmd javafx:run
+
+# Mac/Linux
+./mvnw javafx:run
+```
+
+> **Note:** The first run may take 1-2 minutes to download dependencies. Subsequent runs are fast.
+
+This is the most reliable method and is guaranteed to work regardless of IDE configuration.
+
+---
+
+### Option B — Run from IntelliJ IDEA
+
+1. Open IntelliJ IDEA
+2. **File → Open** → select the `exchange/` folder (the one containing `pom.xml`)
+3. When IntelliJ detects the Maven project, click **"Load Maven Project"** in the popup
+4. Wait for the Maven sync to complete (progress bar at the bottom)
+5. Go to **File → Settings → Build, Execution, Deployment → Build Tools → Maven → Runner**
+   and check **"Delegate IDE build/run actions to Maven"** → click **OK**
+6. Click the **"Current File"** dropdown at the top right → **Edit Configurations**
+7. Click **+** → **Application** and set:
+    - **Name:** `Exchange App`
+    - **Main class:** `com.amr.exchange.Main`
+    - **Module:** select `com.amr.exchange` from the dropdown
+8. Click **OK**, then click the green ▶ Run button
+
+> **If IntelliJ shows "module not found" errors** after reopening the project:
+> go to **View → Tool Windows → Maven**, click **Reload All Maven Projects**,
+> then try running again. If it still fails, use **Option A** instead.
+
+---
+
+### Option C — Run via Maven (if Maven is installed globally)
 
 ```bash
 cd exchange
 mvn clean javafx:run
 ```
 
-> **Note:** If using Maven CLI, ensure `JAVA_HOME` points to JDK 17+.
+> **Note:** Requires Maven to be installed and added to PATH. If `mvn` is not recognized, use Option A instead.
 
 ---
 

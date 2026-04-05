@@ -12,6 +12,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.amr.exchange.api.model.AlertCheckResult;
+import com.amr.exchange.api.model.AlertCheckItem;
 
 import java.net.URL;
 import java.util.List;
@@ -191,33 +193,83 @@ public class Alerts implements Initializable {
 
         ExchangeService.exchangeApi()
                 .checkAlerts(token)
-                .enqueue(new Callback<Object>() {
+                .enqueue(new Callback<AlertCheckResult>() {
                     @Override
-                    public void onResponse(Call<Object> call, Response<Object> response) {
+                    public void onResponse(Call<AlertCheckResult> call,
+                                           Response<AlertCheckResult> response) {
                         Platform.runLater(() -> {
                             checkButton.setDisable(false);
                             if (response.isSuccessful() && response.body() != null) {
-                                // response.body() is a raw object — convert via toString
-                                // for a clean display we format it manually
-                                checkResultArea.setText(
-                                        response.body().toString()
-                                );
+                                AlertCheckResult result = response.body();
+                                StringBuilder sb = new StringBuilder();
+
+                                // current rates
+                                sb.append("=== Current Rates ===\n");
+                                sb.append(String.format("  USD → LBP: %s\n",
+                                        result.currentUsdToLbpRate != null
+                                                ? String.format("%.2f", result.currentUsdToLbpRate)
+                                                : "No data"));
+                                sb.append(String.format("  LBP → USD: %s\n",
+                                        result.currentLbpToUsdRate != null
+                                                ? String.format("%.2f", result.currentLbpToUsdRate)
+                                                : "No data"));
+                                sb.append("\n");
+
+                                // triggered alerts
+                                sb.append("=== Triggered Alerts ===\n");
+                                if (result.triggeredAlerts == null
+                                        || result.triggeredAlerts.isEmpty()) {
+                                    sb.append("  None triggered.\n");
+                                } else {
+                                    for (AlertCheckItem a : result.triggeredAlerts) {
+                                        sb.append(String.format(
+                                                "  ⚠ Alert #%d | %s | %s %.2f" +
+                                                        " | Current Rate: %.2f\n",
+                                                a.id,
+                                                a.usdToLbp ? "USD→LBP" : "LBP→USD",
+                                                a.direction,
+                                                a.threshold,
+                                                a.currentRate != null ? a.currentRate : 0.0
+                                        ));
+                                    }
+                                }
+                                sb.append("\n");
+
+                                // untriggered alerts
+                                sb.append("=== Untriggered Alerts ===\n");
+                                if (result.untriggeredAlerts == null
+                                        || result.untriggeredAlerts.isEmpty()) {
+                                    sb.append("  None.\n");
+                                } else {
+                                    for (AlertCheckItem a : result.untriggeredAlerts) {
+                                        sb.append(String.format(
+                                                "  Alert #%d | %s | %s %.2f" +
+                                                        " | Current Rate: %.2f\n",
+                                                a.id,
+                                                a.usdToLbp ? "USD→LBP" : "LBP→USD",
+                                                a.direction,
+                                                a.threshold,
+                                                a.currentRate != null ? a.currentRate : 0.0
+                                        ));
+                                    }
+                                }
+
+                                checkResultArea.setText(sb.toString());
                             } else if (response.code() == 401) {
                                 checkResultArea.setText(
-                                        "Unauthorized. Please log in again."
-                                );
+                                        "Unauthorized. Please log in again.");
                             } else {
                                 checkResultArea.setText("Failed to check alerts.");
                             }
                         });
                     }
+
                     @Override
-                    public void onFailure(Call<Object> call, Throwable t) {
+                    public void onFailure(Call<AlertCheckResult> call, Throwable t) {
                         Platform.runLater(() -> {
                             checkButton.setDisable(false);
                             checkResultArea.setText(
-                                    "Network error: is the backend running?"
-                            );
+                                    "Network error: is the backend running?");
                         });
                     }
                 });

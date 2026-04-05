@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.amr.exchange.graph.Graph"
+      stylesheets="@graph.css"
+      spacing="10"
+      prefHeight="450.0" prefWidth="480.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="directionGroup"/>
+        <ToggleGroup fx:id="intervalGroup"/>
+    </fx:define>
+
+    <padding><Insets top="15" right="15" bottom="10" left="15"/></padding>
+
+    <!-- title -->
+    <Label text="Exchange Rate Graph" styleClass="page-title"/>
+
+    <!-- controls row 1: date range -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="From:"/>
+        <DatePicker fx:id="startDatePicker"/>
+        <Label text="To:"/>
+        <DatePicker fx:id="endDatePicker"/>
+    </HBox>
+
+    <!-- controls row 2: direction and  interval and apply -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Direction:"/>
+        <RadioButton fx:id="usdToLbpRadio" text="USD → LBP"
+                     toggleGroup="$directionGroup"/>
+        <RadioButton fx:id="lbpToUsdRadio" text="LBP → USD"
+                     toggleGroup="$directionGroup"/>
+        <Separator orientation="VERTICAL"/>
+        <Label text="Interval:"/>
+        <RadioButton fx:id="dailyRadio"  text="Daily"
+                     toggleGroup="$intervalGroup"/>
+        <RadioButton fx:id="hourlyRadio" text="Hourly"
+                     toggleGroup="$intervalGroup"/>
+        <Button text="Apply" onAction="#onApply" styleClass="primary-btn"/>
+    </HBox>
+
+    <!-- the actual line chart -->
+    <LineChart fx:id="rateChart" VBox.vgrow="ALWAYS"
+               title="Exchange Rate Over Time">
+        <xAxis>
+            <CategoryAxis label="Date / Time"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Rate"/>
+        </yAxis>
+    </LineChart>
+
+    <!--summary row -->
+    <Label fx:id="summaryLabel" text="" styleClass="summary-label"/>
+
+    <!--status -->
+    <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+
+</VBox>

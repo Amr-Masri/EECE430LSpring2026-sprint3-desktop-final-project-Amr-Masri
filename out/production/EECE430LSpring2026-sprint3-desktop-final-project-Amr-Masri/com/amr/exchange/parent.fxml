@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amr.exchange.Parent"
+            stylesheets="@parent.css"
+            prefHeight="475.0" prefWidth="630.0">
+    <left>
+        <VBox styleClass="nav-container">
+            <Button styleClass="nav-button" text="Dashboard"    onAction="#dashboardSelected"/>
+            <Button styleClass="nav-button" text="Graph"        onAction="#graphSelected"/>
+            <Button fx:id="transactionButton" styleClass="nav-button" text="Transactions" onAction="#transactionsSelected"/>
+            <Button fx:id="exportButton"      styleClass="nav-button" text="Export CSV"   onAction="#exportSelected"/>
+            <Button fx:id="marketplaceButton"  styleClass="nav-button" text="Marketplace"   onAction="#marketplaceSelected"/>
+            <Button fx:id="alertsButton" styleClass="nav-button" text="Alerts" onAction="#alertsSelected"/>
+            <Button fx:id="loginButton"       styleClass="nav-button" text="Login"        onAction="#loginSelected"/>
+            <Button fx:id="registerButton"    styleClass="nav-button" text="Register"     onAction="#registerSelected"/>
+            <Button fx:id="logoutButton"      styleClass="nav-button" text="Log Out"      onAction="#logoutSelected"/>
+        </VBox>
+    </left>
+    <top>
+        <HBox styleClass="proof-panel" spacing="20">
+            <Label text="Student: Amr El Masri"/>
+            <Label fx:id="proofTimeLabel" text="Time: ..."/>
+            <Label fx:id="proofScreenLabel" text="Screen: Login"/>
+        </HBox>
+    </top>
+    <!--the center is intentionally empty here, it is loaded in initialize()-->
+</BorderPane>
