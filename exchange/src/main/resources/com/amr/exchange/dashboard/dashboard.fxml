@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amr.exchange.dashboard.Dashboard"
+            fitToWidth="true"
+            prefHeight="450.0" prefWidth="480.0"
+            stylesheets="@dashboard.css">
+
+    <!--declare shared resources here so the $directionGroup reference works-->
+    <fx:define>
+        <ToggleGroup fx:id="directionGroup"/>
+    </fx:define>
+
+    <content>
+        <VBox spacing="12">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+            <!--title -->
+            <Label text="Exchange Rate Dashboard" styleClass="page-title"/>
+
+            <!--current rates -->
+            <Label text="Current Rates (72h average)" styleClass="section-title"/>
+            <HBox spacing="20">
+                <VBox styleClass="rate-card" HBox.hgrow="ALWAYS">
+                    <Label text="USD → LBP"/>
+                    <Label fx:id="usdToLbpRateLabel" text="Loading..." styleClass="rate-value"/>
+                </VBox>
+                <VBox styleClass="rate-card" HBox.hgrow="ALWAYS">
+                    <Label text="LBP → USD"/>
+                    <Label fx:id="lbpToUsdRateLabel" text="Loading..." styleClass="rate-value"/>
+                </VBox>
+            </HBox>
+
+            <!--date range and direction controls -->
+            <Label text="Analytics Settings" styleClass="section-title"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="From:"/>
+                <DatePicker fx:id="startDatePicker"/>
+                <Label text="To:"/>
+                <DatePicker fx:id="endDatePicker"/>
+            </HBox>
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <Label text="Direction:"/>
+                <RadioButton fx:id="usdToLbpRadio" text="USD → LBP"
+                             toggleGroup="$directionGroup"/>
+                <RadioButton fx:id="lbpToUsdRadio" text="LBP → USD"
+                             toggleGroup="$directionGroup"/>
+                <Button text="Apply / Refresh" onAction="#onRefresh" styleClass="primary-btn"/>
+            </HBox>
+
+            <!--analytics stats-->
+            <Label text="Analytics Overview" styleClass="section-title"/>
+            <GridPane hgap="15" vgap="8">
+                <Label text="Average Rate:"    GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="avgRateLabel"    GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="stat-value"/>
+                <Label text="Min Rate:"        GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="minRateLabel"    GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="stat-value"/>
+                <Label text="Max Rate:"        GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label fx:id="maxRateLabel"    GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="stat-value"/>
+                <Label text=" % Change:"        GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label fx:id="changeLabel"     GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="stat-value"/>
+                <Label text="Volatility:"      GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label fx:id="volatilityLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="stat-value"/>
+                <Label text="Transactions:"    GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <Label fx:id="txCountLabel"    GridPane.columnIndex="1" GridPane.rowIndex="5" styleClass="stat-value"/>
+            </GridPane>
+
+            <!--insights-->
+            <Label text="Insights" styleClass="section-title"/>
+            <VBox styleClass="insight-box" spacing="6">
+                <Label fx:id="insightTrendLabel"      text="Trend: —"/>
+                <Label fx:id="insightVolatilityLabel" text="Volatility: —"/>
+                <Label fx:id="insightSpikeLabel"      text="Biggest spike: —"/>
+            </VBox>
+
+            <!--status -->
+            <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+        </VBox>
+    </content>
+</ScrollPane>

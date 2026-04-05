@@ -11,5 +11,6 @@ module com.amr.exchange {
     opens com.amr.exchange.api.model to gson;
     opens com.amr.exchange.login to javafx.fxml;
     opens com.amr.exchange.register to javafx.fxml;
+    opens com.amr.exchange.dashboard to javafx.fxml;
     exports com.amr.exchange;
 }
