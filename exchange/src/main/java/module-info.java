@@ -6,6 +6,7 @@ module com.amr.exchange {
     requires gson;
     requires retrofit2.converter.gson;
     requires java.prefs;
+    requires okhttp3;
 
     opens com.amr.exchange to javafx.fxml;
     opens com.amr.exchange.api.model to javafx.base, gson;
@@ -14,5 +15,6 @@ module com.amr.exchange {
     opens com.amr.exchange.dashboard to javafx.fxml;
     opens com.amr.exchange.graph to javafx.fxml;
     opens com.amr.exchange.transactions to javafx.fxml;
+    opens com.amr.exchange.export to javafx.fxml;
     exports com.amr.exchange;
 }

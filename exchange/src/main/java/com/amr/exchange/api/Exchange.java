@@ -1,6 +1,7 @@
 package com.amr.exchange.api;
 
 import com.amr.exchange.api.model.*;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -40,5 +41,10 @@ public interface Exchange {
     @GET("/transaction")
     Call<List<Transaction>> getUserTransactions(
         @Header("Authorization") String authorization
+    );
+
+    @GET("/export")
+    Call<ResponseBody> exportTransactions(
+            @Header("Authorization") String authorization
     );
 }

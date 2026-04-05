@@ -114,7 +114,7 @@ public class Parent implements Initializable, OnPageCompleteListener {
                 case DASHBOARD    -> "dashboard/dashboard.fxml";
                 case GRAPH        -> "graph/graph.fxml";
                 case TRANSACTIONS -> "transactions/transactions.fxml";
-                case EXPORT       -> "login/login.fxml";   // placeholder
+                case EXPORT       -> "export/export.fxml";
                 case LOGIN        -> "login/login.fxml";
                 case REGISTER     -> "register/register.fxml";
             };

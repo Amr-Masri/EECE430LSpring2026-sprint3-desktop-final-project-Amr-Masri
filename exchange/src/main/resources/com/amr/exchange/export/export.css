@@ -1,0 +1,38 @@
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.description-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555;
+    -fx-max-width: 400px;
+    -fx-text-alignment: center;
+}
+.section-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+.export-btn {
+    -fx-font-size: 14px;
+    -fx-padding: 10 30 10 30;
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.export-btn:hover {
+    -fx-background-color: #1e8449;
+}
+.export-btn:disabled {
+    -fx-background-color: #aaa;
+}
+.status-label {
+    -fx-font-size: 12px;
+    -fx-max-width: 400px;
+    -fx-text-alignment: center;
+}
+.preview-area {
+    -fx-font-family: monospace;
+    -fx-font-size: 11px;
+}
