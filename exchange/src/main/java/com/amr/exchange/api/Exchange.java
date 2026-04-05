@@ -47,4 +47,30 @@ public interface Exchange {
     Call<ResponseBody> exportTransactions(
             @Header("Authorization") String authorization
     );
+
+    @GET("/market/offers")
+    Call<List<Offer>> getAvailableOffers();
+
+    @POST("/market/offers")
+    Call<Offer> createOffer(
+            @Body Offer offer,
+            @Header("Authorization") String authorization
+    );
+
+    @POST("/market/offers/{id}/accept")
+    Call<Offer> acceptOffer(
+            @Path("id") int offerId,
+            @Header("Authorization") String authorization
+    );
+
+    @DELETE("/market/offers/{id}")
+    Call<ResponseBody> cancelOffer(
+            @Path("id") int offerId,
+            @Header("Authorization") String authorization
+    );
+
+    @GET("/market/trades")
+    Call<List<Offer>> getMyTrades(
+            @Header("Authorization") String authorization
+    );
 }

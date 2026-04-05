@@ -16,5 +16,6 @@ module com.amr.exchange {
     opens com.amr.exchange.graph to javafx.fxml;
     opens com.amr.exchange.transactions to javafx.fxml;
     opens com.amr.exchange.export to javafx.fxml;
+    opens com.amr.exchange.marketplace to javafx.fxml;
     exports com.amr.exchange;
 }

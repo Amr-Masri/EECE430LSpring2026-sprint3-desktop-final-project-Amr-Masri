@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.amr.exchange.marketplace.Marketplace"
+            stylesheets="@marketplace.css"
+            fitToWidth="true"
+            prefHeight="450.0" prefWidth="480.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="createDirGroup"/>
+    </fx:define>
+
+    <content>
+        <VBox spacing="12">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+
+            <!--title-->
+            <Label text="P2P Marketplace" styleClass="page-title"/>
+
+            <!--create offer -->
+            <Label text="Post a New Offer" styleClass="section-title"/>
+            <VBox styleClass="form-box" spacing="8">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="USD Amount:" minWidth="100"/>
+                    <TextField fx:id="createUsdField" promptText="e.g. 100" prefWidth="140"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="LBP Amount:" minWidth="100"/>
+                    <TextField fx:id="createLbpField" promptText="e.g. 9000000" prefWidth="140"/>
+                </HBox>
+                <HBox spacing="15" alignment="CENTER_LEFT">
+                    <Label text="Direction:" minWidth="100"/>
+                    <RadioButton fx:id="createUsdToLbpRadio" text="USD → LBP"
+                                 toggleGroup="$createDirGroup" selected="true"/>
+                    <RadioButton fx:id="createLbpToUsdRadio" text="LBP → USD"
+                                 toggleGroup="$createDirGroup"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="createButton" text="Post Offer"
+                            onAction="#onCreateOffer" styleClass="primary-btn"/>
+                    <Label fx:id="createStatusLabel" text="" styleClass="status-label"/>
+                </HBox>
+            </VBox>
+
+            <!--available offers-->
+            <Label text="Browse Open Offers" styleClass="section-title"/>
+            <TableView fx:id="offersTable" prefHeight="160">
+                <columns>
+                    <TableColumn fx:id="colOfferId"   text="ID"        prefWidth="35"/>
+                    <TableColumn fx:id="colOfferUser" text="By User"   prefWidth="65"/>
+                    <TableColumn fx:id="colOfferUsd"  text="USD"       prefWidth="70"/>
+                    <TableColumn fx:id="colOfferLbp"  text="LBP"       prefWidth="85"/>
+                    <TableColumn fx:id="colOfferDir"  text="Direction" prefWidth="75"/>
+                    <TableColumn fx:id="colOfferDate" text="Posted"    prefWidth="130"/>
+                </columns>
+                <placeholder><Label text="No open offers available."/></placeholder>
+            </TableView>
+            <Label fx:id="offersStatusLabel" text="" styleClass="status-label"/>
+
+            <!--my trades -->
+            <Label text="My Trade History" styleClass="section-title"/>
+            <TableView fx:id="tradesTable" prefHeight="140">
+                <columns>
+                    <TableColumn fx:id="colTradeId"     text="ID"        prefWidth="35"/>
+                    <TableColumn fx:id="colTradeUsd"    text="USD"       prefWidth="70"/>
+                    <TableColumn fx:id="colTradeLbp"    text="LBP"       prefWidth="85"/>
+                    <TableColumn fx:id="colTradeDir"    text="Direction" prefWidth="75"/>
+                    <TableColumn fx:id="colTradeStatus" text="Status"    prefWidth="75"/>
+                    <TableColumn fx:id="colTradeDate"   text="Accepted"  prefWidth="130"/>
+                </columns>
+                <placeholder><Label text="No completed trades yet."/></placeholder>
+            </TableView>
+            <Label fx:id="tradesStatusLabel" text="" styleClass="status-label"/>
+        </VBox>
+    </content>
+</ScrollPane>

@@ -12,6 +12,7 @@
             <Button styleClass="nav-button" text="Graph"        onAction="#graphSelected"/>
             <Button fx:id="transactionButton" styleClass="nav-button" text="Transactions" onAction="#transactionsSelected"/>
             <Button fx:id="exportButton"      styleClass="nav-button" text="Export CSV"   onAction="#exportSelected"/>
+            <Button fx:id="marketplaceButton"  styleClass="nav-button" text="Marketplace"   onAction="#marketplaceSelected"/>
             <Button fx:id="loginButton"       styleClass="nav-button" text="Login"        onAction="#loginSelected"/>
             <Button fx:id="registerButton"    styleClass="nav-button" text="Register"     onAction="#registerSelected"/>
             <Button fx:id="logoutButton"      styleClass="nav-button" text="Log Out"      onAction="#logoutSelected"/>
