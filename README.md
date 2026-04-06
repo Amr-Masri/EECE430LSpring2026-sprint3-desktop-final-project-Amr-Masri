@@ -1,6 +1,6 @@
 # Exchange Rate Desktop Application — Sprint 3
 
-**EECE 430L | Amr El Masri | Student ID: 202400971**
+**EECE 430L | Amr El Masri 
 
 A JavaFX desktop client for the Exchange Rate Software System. This application consumes the Sprint 1 Flask backend REST API and provides a full desktop interface for exchange rate viewing, analytics, charting, transaction management, CSV export, P2P marketplace, and exchange rate alerts.
 
